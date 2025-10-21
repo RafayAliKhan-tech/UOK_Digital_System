@@ -39,7 +39,7 @@ const getAttendanceByDepartment = async (departmentName) => {
       `SELECT c.course_code, c.course_name, c.sem_no, 
               s.name AS student_name, s.seat_no, s.program, 
               a.percentage, d.depart_name 
-       FROM attendance a
+       FROM attendence a
        JOIN students s ON a.student_id = s.id
        JOIN courses c ON a.course_id = c.id
        JOIN departments_sci d ON s.depart_id = d.id

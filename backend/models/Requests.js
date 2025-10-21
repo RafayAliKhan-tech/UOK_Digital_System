@@ -415,11 +415,30 @@ const checkExistingRegularRequest = async (loggedInUserId, semNum) => {
   const studentId = await getStudentIdByUserId(loggedInUserId);
   if (!studentId) return false;
 
-  const result = await db.query(
-    `SELECT id FROM requests
-      WHERE student_id = $1 AND sem_num = $2 AND exam_type = 'Regular'`,
-    [studentId, semNum]
-  );
+  // const result = await db.query(
+  //   `SELECT id FROM requests
+  //     WHERE student_id = $1 AND sem_num = $2 AND exam_type = 'Regular'`,
+  //   [studentId, semNum]
+  // );
+// const result = await db.query(
+//   `SELECT id FROM requests
+//    WHERE student_id = $1
+//    AND sem_num = $2
+//    AND exam_type = 'Regular'`,
+//   [studentId, sem_num] // ✅ match variable name with your body field
+// );
+  console.log("🧩 checkDuplicateRegular inputs:", {
+  studentId,
+  someOtherParam,
+  typeOfStudentId: typeof studentId
+});
+ console.log("🧠 SQL:", queryText);
+console.log("🧠 Params:", queryParams);
+
+
+
+
+
 
   return result.rows.length > 0;
 };
@@ -568,6 +587,44 @@ const autoCompleteOldRequests = async () => {
   return rowsResult.rows.length;
 };
 
+// 📌 Fetch Approved Requests (for Uni Admin)
+const getApprovedRequestsFromModel = async (formType = null) => {
+  let query = `
+    SELECT 
+        r.id AS request_id,
+        r.form_type,
+        r.sem_num,
+        r.exam_type,
+        c.course_code AS course_code,
+        c.course_name AS course_name,
+        r.status AS request_status,
+        r.created_at,
+        s.id AS student_id,
+        s.seat_no,
+        s.program,
+        d.depart_name AS department_name
+    FROM requests r
+    JOIN students s ON r.student_id = s.id
+    JOIN departments_sci d ON s.depart_id = d.id
+    LEFT JOIN courses c ON r.course_id = c.id
+    WHERE r.status IN ('Faculty Approved', 'In Progress')
+      AND r.form_type != 'G1 Form'
+  `;
+
+  const params = [];
+  if (formType) {
+    query += " AND r.form_type = $1";
+    params.push(formType);
+  }
+
+  query += " ORDER BY r.created_at DESC";
+
+  const result = await db.query(query, params);
+  return result.rows;
+};
+
+
+
 module.exports = {
   createFormRequest,
   createRequestLog,
@@ -576,6 +633,7 @@ module.exports = {
   getMyRequestsFromModel,
   checkExistingTranscriptRequest,
   getSubmittedRequestsFromModel,
+  getApprovedRequestsFromModel, // ✅ ADD THIS LINE
   updateRequestStatusInModel,
   getRequestById,
   getRequestByIdWithStudent,

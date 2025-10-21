@@ -44,7 +44,8 @@ const TrackingCards = ({ requestId }) => {
 
       try {
         const res = await fetch(
-          `http://localhost:5000/api/requests/${requestId}/logs`,
+          // `http://localhost:5000/api/requests/${requestId}/logs`,
+          `https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/${requestId}/logs`,
           {
             headers: {
               Authorization: `Bearer ${sessionStorage.getItem("token")}`,

@@ -15,7 +15,8 @@ const Results = ({ departmentName }) => {
     const fetchResults = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/results/${departmentName}`
+          // `http://localhost:5000/api/results/${departmentName}`
+          `https://uokdigitalsystem-production-7da8.up.railway.app/api/results/${departmentName}`
         );
         setData(res.data);
       } catch (err) {

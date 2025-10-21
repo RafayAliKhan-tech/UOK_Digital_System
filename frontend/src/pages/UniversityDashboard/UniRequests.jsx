@@ -18,7 +18,8 @@ const UniRequests = () => {
       const token = user?.token;
 
       const { data } = await axios.get(
-        "http://localhost:5000/api/requests/approved",
+        // "http://localhost:5000/api/requests/approved",
+        "https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/approved",
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -44,7 +45,8 @@ const UniRequests = () => {
       const token = user?.token;
 
       await axios.put(
-        `http://localhost:5000/api/requests/${requestId}/unistatus`,
+        // `http://localhost:5000/api/requests/${requestId}/unistatus`,
+        `https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/${requestId}/unistatus`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

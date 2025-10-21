@@ -58,7 +58,8 @@ export default function G1Form({ userId, studentInfo, selectedForm }) {
 
     if (!updated.includes(sem)) return; // skip if unchecked
     try {
-      const res = await fetch(`http://localhost:5000/api/courses/${userId}/${sem}`);
+      // const res = await fetch(`http://localhost:5000/api/courses/${userId}/${sem}`);
+      const res = await fetch(`https://uokdigitalsystem-production-7da8.up.railway.app/api/courses/${userId}/${sem}`);
       const data = await res.json();
       setAvailableCourses(data);
     } catch (err) {
@@ -111,7 +112,9 @@ export default function G1Form({ userId, studentInfo, selectedForm }) {
     if (!validateForm()) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/requests/check-duplicate-g1", {
+      // const res = await fetch("http://localhost:5000/api/requests/check-duplicate-g1", {
+            const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/check-duplicate-g1", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -164,7 +167,9 @@ export default function G1Form({ userId, studentInfo, selectedForm }) {
 
 
     try {
-      const res = await fetch("http://localhost:5000/api/requests/g1", {
+      // const res = await fetch("http://localhost:5000/api/requests/g1", {
+            const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/g1", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",

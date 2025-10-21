@@ -15,7 +15,8 @@ const Attendance = ({ departmentName }) => {
     const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/attendance/${departmentName}`
+          // `http://localhost:5000/api/attendance/${departmentName}`
+          `https://uokdigitalsystem-production-7da8.up.railway.app/api/attendance/${departmentName}`
         );
         setData(res.data);
       } catch (err) {

@@ -16,7 +16,8 @@ const Requests = () => {
                 if (!token) return;
 
                 const res = await axios.get(
-                    "http://localhost:5000/api/requests/submitted",
+                    // "http://localhost:5000/api/requests/submitted",
+                    "https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/submitted",
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -45,7 +46,8 @@ const Requests = () => {
     const handleStatusChange = async (id, status) => {
         try {
             await axios.put(
-                `http://localhost:5000/api/requests/${id}/status`,
+                // `http://localhost:5000/api/requests/${id}/status`,
+                `https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/${id}/status`,
                 { status },
                 { headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` } }
             );

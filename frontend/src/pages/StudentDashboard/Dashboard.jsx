@@ -79,7 +79,8 @@ const StudentDashboard = () => {
 
       try {
         // console.log("📡 Fetching Student Profile...");
-        const res = await fetch("http://localhost:5000/api/users/student/me", {
+        // const res = await fetch("http://localhost:5000/api/users/student/me", {
+          const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/users/student/me", {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
@@ -98,7 +99,8 @@ const StudentDashboard = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/requests/my", {
+        // const res = await fetch("http://localhost:5000/api/requests/my", {
+        const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/my", {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
 
@@ -351,3 +353,5 @@ const StudentDashboard = () => {
 };
 
 export default StudentDashboard;
+
+

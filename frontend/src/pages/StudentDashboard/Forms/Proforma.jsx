@@ -80,7 +80,9 @@ const Proforma = ({ userId, studentInfo, selectedForm }) => {
     if (!validateForm()) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/requests/proforma", {
+      // const res = await fetch("http://localhost:5000/api/requests/proforma", {
+            const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/proforma", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -116,7 +118,8 @@ const Proforma = ({ userId, studentInfo, selectedForm }) => {
 
     try {
       // 🔎 Check backend se
-      const res = await fetch("http://localhost:5000/api/requests/check-regular", {
+      // const res = await fetch("http://localhost:5000/api/requests/check-regular", {
+      const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/check-regular", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

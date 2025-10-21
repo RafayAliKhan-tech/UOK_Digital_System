@@ -8,7 +8,8 @@ const Profile = ({ profile, userId }) => {
 
   const handleChangePassword = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/password`, {
+      // const res = await fetch(`http://localhost:5000/api/users/password`, {
+      const res = await fetch(`https://uokdigitalsystem-production-7da8.up.railway.app/api/users/password`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

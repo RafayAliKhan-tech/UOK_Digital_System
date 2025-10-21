@@ -15,7 +15,9 @@ const SemesterPayments = ({ departmentName }) => {
     const fetchPayments = async () => {
       try {
         const encodedDept = encodeURIComponent(departmentName); // ✅ encode spaces
-        const res = await axios.get(`http://localhost:5000/api/semester_payments/${encodeURIComponent(departmentName)}`);
+        // const res = await axios.get(`http://localhost:5000/api/semester_payments/${encodeURIComponent(departmentName)}`);
+                const res = await axios.get(`https://uokdigitalsystem-production-7da8.up.railway.app/api/semester_payments/${encodeURIComponent(departmentName)}`);
+
 
         setData(res.data);
       } catch (err) {

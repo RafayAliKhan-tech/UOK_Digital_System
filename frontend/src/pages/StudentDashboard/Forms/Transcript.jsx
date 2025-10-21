@@ -61,7 +61,9 @@ const Transcript = ({ userId, studentInfo }) => {
     if (!validateForm()) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/requests/transcript", {
+      // const res = await fetch("http://localhost:5000/api/requests/transcript", {
+            const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/transcript", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +98,9 @@ const Transcript = ({ userId, studentInfo }) => {
 
     try {
       // 🔎 check backend for duplicate transcript
-      const res = await fetch("http://localhost:5000/api/requests/check-transcript", {
+      // const res = await fetch("http://localhost:5000/api/requests/check-transcript", {
+            const res = await fetch("https://uokdigitalsystem-production-7da8.up.railway.app/api/requests/check-transcript", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
