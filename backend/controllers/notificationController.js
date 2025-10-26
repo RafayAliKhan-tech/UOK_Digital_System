@@ -14,14 +14,32 @@ const getNotificationsByUser = async (req, res) => {
 };
 
 // ✅ Mark notification as read
+// const markNotificationAsRead = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const userId = req.user.id;
+
+//     const [result] = await Notification.markAsRead(id, userId);
+
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ message: "Notification not found" });
+//     }
+
+//     res.json({ message: "Notification marked as read" });
+//   } catch (error) {
+//     console.error("❌ Error marking notification:", error);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// };
 const markNotificationAsRead = async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user.id;
+    const userId = req.user?.id;
+    if (!userId) return res.status(401).json({ message: "Unauthorized" });
 
-    const [result] = await Notification.markAsRead(id, userId);
+    const result = await Notification.markAsRead(id, userId);
 
-    if (result.affectedRows === 0) {
+    if (result.rowCount === 0) {
       return res.status(404).json({ message: "Notification not found" });
     }
 
@@ -31,5 +49,6 @@ const markNotificationAsRead = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 module.exports = { getNotificationsByUser, markNotificationAsRead };
