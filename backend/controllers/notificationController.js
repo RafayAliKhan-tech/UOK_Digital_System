@@ -1,10 +1,11 @@
+// backend/controllers/notificationController.js
 const Notification = require("../models/Notifications");
 
 // ✅ Get all notifications of logged-in user
 const getNotificationsByUser = async (req, res) => {
   try {
     const userId = req.user.id;
-    const [rows] = await Notification.getNotificationsByUserId(userId);
+    const rows = await Notification.getNotificationsByUserId(userId);
     res.json({ notifications: rows });
   } catch (error) {
     console.error("❌ Error fetching notifications:", error);

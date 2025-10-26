@@ -28,7 +28,7 @@
 
 // module.exports = { createNotification, getNotificationsByUserId, markAsRead };
 // backend/models/Notifications.js
-const db = require("../config/db");
+// const db = require("../config/db");
 
 // // ✅ Create Notification
 // const createNotification = async (toUserId, title, message) => {
@@ -58,6 +58,8 @@ const db = require("../config/db");
 
 // module.exports = { createNotification, getNotificationsByUserId, markAsRead };
 // ✅ Create Notification
+// backend/models/Notifications.js
+const db = require("../config/db");
 const createNotification = async (toUserId, title, message) => {
   return db.query(
     `INSERT INTO notifications (user_id, title, message, created_at, is_read)
